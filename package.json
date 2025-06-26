@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "parcel index.html",
-    "build":"parcel build index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "author": "Abhishek",
@@ -13,10 +13,11 @@
     "parcel": "^2.15.2"
   },
   "dependencies": {
+    "nodemon": "^3.1.10",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
-  "browserslist":[
+  "browserslist": [
     "last 2 versions"
   ]
 }
