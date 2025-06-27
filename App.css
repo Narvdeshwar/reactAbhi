@@ -89,3 +89,45 @@ footer{
   background-color: #04AA6D;
   color: white;
 }
+.shimmer_container{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
+.card1{
+    background-color: #f0f0f0;
+    height: 400px;
+    width: 200px;
+    padding: 20px;
+    background-color:#f0f0f0;
+   
+}
+.card2{
+    background-color: #f0f0f0;
+    height: 400px;
+    width: 200px;
+    padding: 20px;
+       background-color:#f0f0f0;
+ 
+}
+.card3{
+    background-color: #f0f0f0;
+    height: 400px;
+    width: 200px;
+    padding: 20px;
+      background-color:#f0f0f0;
+   
+}
+.card4{
+    background-color: #f0f0f0;
+    height: 400px;
+    width: 200px;
+    padding: 20px;
+     background-color:#f0f0f0;
+   
+}
+.btn-logic{
+    padding: 0 20px;
+    cursor: pointer;
+}
