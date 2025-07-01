@@ -31,11 +31,13 @@ width: 100px;
     width: 100px;
 }
 .main-grid{
-    display: grid;
-      grid-template-columns: auto auto auto ;
-      
-    margin-left: 80px;
-    padding: 20px;
+  
+ 
+}
+.list-food{
+     width: 300px;
+   height: 400px;
+   padding: 20px;
 }
 .image-food-list{
     width: 200px;
@@ -130,4 +132,10 @@ footer{
 .btn-logic{
     padding: 0 20px;
     cursor: pointer;
+}
+
+/* user page */
+.user-card{
+    padding: 20px;
+    border: 1px solid black;
 }
