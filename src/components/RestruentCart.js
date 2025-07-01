@@ -2,9 +2,9 @@ import { CDN_URL } from "../utils/constant";
 
 const RestruentCart = (props) => {  //both are same thing 
     const { resdata } = props;
-    console.log(resdata)
+
     const { name, cloudinaryImageId, costForTwo, cuisines, avgRating, sla } = resdata.info;
-    console.log(sla)
+   
 
     return (
         <div className="main-grid">

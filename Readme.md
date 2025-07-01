@@ -62,3 +62,7 @@ import {header} from "path"
     # state React Variable define 
 ### whenever State Variable  update,react triggers a reconcillation cycle(re-render the components)
 
+# 2 types of Routing in web pages
+- client side Routing
+- server side Routing
+
