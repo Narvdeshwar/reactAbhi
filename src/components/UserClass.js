@@ -2,16 +2,32 @@ import React from "react"
 class UserClass extends React.Component{
     constructor(props){
         super(props)
-        this.state ={
-            count : 0,
+        this.state = {
+           userInfo:{
+            name:"dummy",
+            location:"defaults"
+           }
         }
     }
+ async componentDidMount(){
+  const data = await fetch("  https://api.github.com/users/abhi2J4")
+  const json = await data.json()
+  this.setState({
+    userInfo:json
+  })
+}
+componentWillUnmount (){
+    console.log("components did unmount")
+}
+
     render(){
+        const {name,id} =this.state.userInfo
+    
         return(
             <div className="user-card">
-                <h1>{this.state.count}</h1>
-        <h1>Name : {this.props.name} </h1>
-        <h2>Address : Aydhya</h2>
+    
+        <h1>Name : {name} </h1>
+        <h2>id :{id}</h2>
         <h3>abhsihek@gmail.com</h3>
         </div>
         )

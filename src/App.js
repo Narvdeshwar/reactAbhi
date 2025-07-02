@@ -2,17 +2,21 @@ import ReactDOM from "react-dom/client"
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-import About from "./components/About";
+// import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error"
 import Restaurant from "./components/Restaurant";
-// import RestruentCart from "./components/RestruentCart";
+// import Grocery from "./components/Grocery";
 import App from "../App.css"
 import {
     createBrowserRouter,
     createBrowserRouter as Router,
     RouterProvider, Outlet
 } from "react-router";
+
+const  Grocery =  lazy(()=> import("./components/Grocery"))
+const  About =  lazy(()=> import("./components/About"))
+import { lazy, Suspense } from "react";
 
 
 // components - it is a just a arrow function 
@@ -39,11 +43,15 @@ const AppRouter = createBrowserRouter([
             },
             {
                 path: "/about",
-                element: <About />,
+                element: <Suspense fallback={<h1>Loading.....</h1>}><About/></Suspense>,
             },
             {
                 path: "/contact",
                 element: <Contact />,
+            },
+            {
+                path: "/grocery",
+                element:<Suspense fallback={<h1>Loading.....</h1>}><Grocery /></Suspense> ,
             },
             {
                 path:"/restaurant/:resId",

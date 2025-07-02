@@ -2,7 +2,9 @@ import RestruentCart from "./RestruentCart";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
+import  mockdata from "../utils/mockdata"
 
+import useonlineStatus from "../utils/useonlineStatus";
 const Body = () => {
     const [ListData,setListdata] = useState([]);
     const [seachText,setSearchText] = useState("");
@@ -14,16 +16,24 @@ const Body = () => {
 
   const fetchData = async () =>{
     const data = await  fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+       mockdata
     )
    
     const json = await data.json();
+    console.log(json)
     //optional chaining
     const result = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     setListdata(result)
     setfilterRestaurantes(result)
    
   }
+
+  const onlineStatus = useonlineStatus();
+  if(onlineStatus === false)
+    return(
+  <h1>Look like you are offline !! Please you are check internet connection</h1>)
+    
+  
 return  ListData?.length === 0 ? (<Shimmer/>):(
         <>
             <div className="body-main">
