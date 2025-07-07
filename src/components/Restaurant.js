@@ -1,6 +1,10 @@
+
+import { useState } from "react";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCatergory from "./RestaurantCatergory";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
+
 
 const Restaurant = () => {
 
@@ -8,28 +12,35 @@ const Restaurant = () => {
 
     const restInfo = useRestaurantMenu(resId);
 
+    const [showIndex,setShowIndex]= useState(null)
+
     if (restInfo === null)
         return <Shimmer />;
 
-    const { name, costForTwoMessage, cuisines } = restInfo?.data?.cards[2]?.card?.card?.info;
-    const check = restInfo?.data?.cards[2];
-    console.log("checking", check)
+    const { name, costForTwoMessage, cuisines ,cloudinaryImageId} = restInfo?.data?.cards[2]?.card?.card?.info;
+
+   
 
     const { itemCards } = restInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[1]?.card?.card;
 
+
+
+ const catergores = restInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter(c=>c.card.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
+
     return (
-        <div className="Menu">
-            <h1>{name}</h1>
-            <h3>{costForTwoMessage}</h3>
-            <h2>{cuisines}</h2>
-            <h1>Menu</h1>
-            <ul>
+        <div className="text-center">
+        <div className=" text-center">
+            <h1 className="font-bold fon my-2 p-2">{name}</h1>
+           <h1 className="font-semibold " > {cuisines.join(",")} - {costForTwoMessage} </h1>
 
-                {itemCards?.map((items) => (
-                    <li key={items.card?.info.id}>{items.card?.info.name} -  {"Rs  "}{items.card?.info.defaultPrice / 100 || items.card?.info.price / 100}</li>
-                ))}
-
-            </ul>
+           {catergores.map((catergory,index)=>(
+            <RestaurantCatergory key={catergory.card?.card.title}
+             data= {catergory.card?.card}
+             showItem ={index === showIndex ? true:false}
+             setShowIndex={()=> setShowIndex(index)}
+             />
+           ))}
+        </div>
         </div>
     )
 }

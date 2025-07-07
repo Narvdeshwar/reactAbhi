@@ -1,37 +1,42 @@
 import { Link } from "react-router";
 import { LOGO_URL } from "../utils/constant";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import useonlineStatus from "../utils/useonlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
-  
+
     const onlineStatus = useonlineStatus();
-    
-    const [ReactBtn,setReactBtn] = useState("login")
-    console.log("header")
+
+    const [ReactBtn, setReactBtn] = useState("login")
+ 
+    const {loggedInUser} = useContext(UserContext)
+    console.log(loggedInUser)
 
     // when click button it click it will not change on button only it will render all page prove it with console.log
-    useEffect(()=>{
+    useEffect(() => {
         console.log("useEffects is render")
-    },[])
+    }, [])
     return (
-        <div className="header">
+        <div className="flex justify-between  bg-pink-400 shadow-2xl m-2 ">
             <div className="logo-header">
-                <img className="image-f" src={LOGO_URL} />
+                <img className="w-30" src={LOGO_URL} />
             </div>
-            <div className="List-Item">
+            <div className="flex items-center">
 
-                
-                <ul>
-                    <li>Online Status{onlineStatus ?"✅":"🔴"} </li>
+
+                <ul className="flex m-4 p-4 gap-8">
+                    <li>Online Status{onlineStatus ? "✅" : "🔴"} </li>
                     <li><Link to="/">Home</Link></li>
                     <li> <Link to="/about">About</Link></li>
                     <li ><Link to="/contact">Contact</Link></li>
                     <li ><Link to="/grocery">Grocery</Link></li>
-                    <li><Link to="/cart">Cart</Link></li>
-                    <button className="btn-logic" onClick={()=>{
-                      ReactBtn === "login" ? setReactBtn ("logout"):setReactBtn ("login")
+                    <li className="px-4 font-bold">Cart</li>
+                    <button className="btn-logic" onClick={() => {
+                        ReactBtn === "login" ? setReactBtn("logout") : setReactBtn("login")
                     }}>{ReactBtn}</button>
+
+                    <li className="px-4 font-bold">{loggedInUser}</li>
                 </ul>
             </div>
         </div>

@@ -7,28 +7,47 @@ import Contact from "./components/Contact";
 import Error from "./components/Error"
 import Restaurant from "./components/Restaurant";
 // import Grocery from "./components/Grocery";
-import App from "../App.css"
+
+import UserContext from "./utils/UserContext"
+
 import {
     createBrowserRouter,
     createBrowserRouter as Router,
     RouterProvider, Outlet
 } from "react-router";
 
-const  Grocery =  lazy(()=> import("./components/Grocery"))
-const  About =  lazy(()=> import("./components/About"))
-import { lazy, Suspense } from "react";
+const Grocery = lazy(() => import("./components/Grocery"))
+const About = lazy(() => import("./components/About"))
+import { lazy, Suspense, useEffect, useState } from "react";
 
 
 // components - it is a just a arrow function 
 
 
 const AppLayout = () => {
+
+    const [userName, setUserName] = useState()
+
+useEffect(() => {
+    // make an Api call to userName and password 
+    const data = {
+        name: "Abhishek yadav",
+    }
+    setUserName(data.name)
+}, [])
     return (
-        <div className="app">
-            <Header />
-            <Outlet />
-            <Footer />
-        </div>
+        <>
+        <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
+
+            <div className="app">
+                {/* <UserContext.Provider value={{ loggedInUser: "jacky" }}> */}
+                <Header />
+                 {/* </UserContext.Provider> */}
+                <Outlet />
+                <Footer />
+            </div>
+        </UserContext.Provider>
+       </>
     )
 }
 
@@ -43,7 +62,7 @@ const AppRouter = createBrowserRouter([
             },
             {
                 path: "/about",
-                element: <Suspense fallback={<h1>Loading.....</h1>}><About/></Suspense>,
+                element: <Suspense fallback={<h1>Loading.....</h1>}><About /></Suspense>,
             },
             {
                 path: "/contact",
@@ -51,11 +70,11 @@ const AppRouter = createBrowserRouter([
             },
             {
                 path: "/grocery",
-                element:<Suspense fallback={<h1>Loading.....</h1>}><Grocery /></Suspense> ,
+                element: <Suspense fallback={<h1>Loading.....</h1>}><Grocery /></Suspense>,
             },
             {
-                path:"/restaurant/:resId",
-                element:<Restaurant/>
+                path: "/restaurant/:resId",
+                element: <Restaurant />
 
             }
         ],
