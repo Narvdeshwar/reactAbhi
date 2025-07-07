@@ -5,8 +5,8 @@ const About = () =>{
     return(
         <div>
             <h1>about Page</h1>
-           <Users name ={"Abhishek (function)"}/>
-           <UserClass name = {"Abhsihek (class)"}/>
+           <Users name ={"Abhishek (function)"} />
+           <UserClass name = {"Abhsihek (class) "} location= {"Ashok Nagar class"}/>
         </div>
     )
 }

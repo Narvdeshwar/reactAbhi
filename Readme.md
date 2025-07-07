@@ -66,3 +66,9 @@ import {header} from "path"
 - client side Routing
 - server side Routing
 
+##chunking ,
+ code splitting ,
+ dynamic bundles,
+ lazy loading,ondemand loading
+ on demand loading
+ dynamic import - smaller bundles of each file
