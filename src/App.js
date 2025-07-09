@@ -9,6 +9,7 @@ import Restaurant from "./components/Restaurant";
 // import Grocery from "./components/Grocery";
 
 import UserContext from "./utils/UserContext"
+import { Provider } from "react-redux";
 
 import {
     createBrowserRouter,
@@ -19,6 +20,8 @@ import {
 const Grocery = lazy(() => import("./components/Grocery"))
 const About = lazy(() => import("./components/About"))
 import { lazy, Suspense, useEffect, useState } from "react";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 
 // components - it is a just a arrow function 
@@ -37,6 +40,7 @@ useEffect(() => {
 }, [])
     return (
         <>
+        <Provider store={appStore}>
         <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
 
             <div className="app">
@@ -47,6 +51,7 @@ useEffect(() => {
                 <Footer />
             </div>
         </UserContext.Provider>
+        </Provider>
        </>
     )
 }
@@ -76,6 +81,10 @@ const AppRouter = createBrowserRouter([
                 path: "/restaurant/:resId",
                 element: <Restaurant />
 
+            },
+            {
+                path:"/cart",
+                element:<Cart/>
             }
         ],
         errorElement: <Error />
