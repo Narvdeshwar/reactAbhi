@@ -3,6 +3,7 @@ import { LOGO_URL } from "../utils/constant";
 import { useEffect, useState,useContext } from "react";
 import useonlineStatus from "../utils/useonlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
 
@@ -12,10 +13,13 @@ const Header = () => {
  
     const {loggedInUser} = useContext(UserContext)
     console.log(loggedInUser)
+    //subscribing to the store using  a selector
+    const cartItems = useSelector((store)=>store.cart.items);
+    console.log(cartItems)
 
     // when click button it click it will not change on button only it will render all page prove it with console.log
     useEffect(() => {
-        console.log("useEffects is render")
+        // console.log("useEffects is render")
     }, [])
     return (
         <div className="flex justify-between  bg-pink-400 shadow-2xl m-2 ">
@@ -31,7 +35,8 @@ const Header = () => {
                     <li> <Link to="/about">About</Link></li>
                     <li ><Link to="/contact">Contact</Link></li>
                     <li ><Link to="/grocery">Grocery</Link></li>
-                    <li className="px-4 font-bold">Cart</li>
+                    <li className="px-4 font-bold text-xl" ><Link to="/cart">Cart({cartItems.length} items)</Link></li>
+            
                     <button className="btn-logic" onClick={() => {
                         ReactBtn === "login" ? setReactBtn("logout") : setReactBtn("login")
                     }}>{ReactBtn}</button>

@@ -1,3 +1,8 @@
+#Start the project 
+## git clone
+## project open in terminal of vsCode 
+## run the  project using - npm start 
+
 #start react
 
 #Parcel
@@ -66,9 +71,32 @@ import {header} from "path"
 - client side Routing
 - server side Routing
 
+
+# Redux ToolKit
+- install @reduxjs/ToolKit and react-redux
+- Build our store 
+- connect our store to our app 
+- Slice(cartSlice)
+- dispatch (action)
+- selector 
+
 ##chunking ,
  code splitting ,
  dynamic bundles,
  lazy loading,ondemand loading
  on demand loading
  dynamic import - smaller bundles of each file
+
+ # Types of Testing(developer)
+ - Unit testing 
+ - Integration Testing
+ - End to End Testing - e2e testing
+
+ # Setting up testing Our App
+ - install react  testing library
+ - install jest
+ - install babel dependancies
+ - configure babel
+ - configure Parcel config file to defaults babel transpilation
+ - jest configuration - npm init jest@latest
+ - intall jsdom library
